@@ -11,7 +11,7 @@ pipeline {
 	stages {
 		stage('git fetch') {
 			steps {
-				git branch: "master" , url: 'git@github.com:Bingeviewer/gameoflife.git' , credentialId: "bingeviewer"
+				git branch: "master" , url: 'git@github.com:Bingeviewer/gameoflife.git' , credentialsId: 'github_gameoflife'
 			}
 		}
 		stage('building war') {
