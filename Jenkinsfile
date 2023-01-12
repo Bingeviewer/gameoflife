@@ -1,7 +1,7 @@
 pipeline {
 	agent {
 		node {
-			label built-in
+			label 'built-in'
 		}
 	}
 	tools {
@@ -11,7 +11,7 @@ pipeline {
 	stages {
 		stage('git fetch') {
 			steps {
-				git branch: "master" , url: 'git@github.com:Bingeviewer/gameoflife.git' , credentialId: "github"
+				git branch: "master" , url: 'git@github.com:Bingeviewer/gameoflife.git' , credentialsId: 'github_gameoflife'
 			}
 		}
 		stage('building war') {
@@ -19,7 +19,7 @@ pipeline {
 				sh "mvn clean package"
 			}
 		}
-		stage {
+		stage('deploying container') {
 			steps {
 				sh "docker-compose up -d"
 			}
